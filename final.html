@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Public Transport Route Planner</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef5f9;
+            text-align: center;
+        }
+
+        .box {
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            color: #1769aa;
+        }
+
+        select, button {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            background: #1769aa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f4ff;
+            border-radius: 10px;
+            display: none;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h1>🚌 Route Planner</h1>
+        <p>Find your public transport route</p>
+
+        <select id="start">
+            <option value="">Select Starting Location</option>
+            <option value="Patna Junction">Patna Junction</option>
+            <option value="Gandhi Maidan">Gandhi Maidan</option>
+            <option value="Kankarbagh">Kankarbagh</option>
+            <option value="Rajendra Nagar">Rajendra Nagar</option>
+        </select>
+
+        <select id="end">
+            <option value="">Select Ending Location</option>
+            <option value="Patna Junction">Patna Junction</option>
+            <option value="Gandhi Maidan">Gandhi Maidan</option>
+            <option value="Kankarbagh">Kankarbagh</option>
+            <option value="Rajendra Nagar">Rajendra Nagar</option>
+        </select>
+
+        <button onclick="findRoute()">Find Route</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function findRoute() {
+            let start = document.getElementById("start").value;
+            let end = document.getElementById("end").value;
+            let result = document.getElementById("result");
+
+            if (start == "" || end == "") {
+                alert("Please select both locations!");
+                return;
+            }
+
+            if (start == end) {
+                result.innerHTML = "⚠️ Starting and ending locations cannot be same.";
+                result.style.display = "block";
+                return;
+            }
+
+            result.innerHTML =
+                "<h3>🚌 Route Found!</h3>" +
+                "<b>From:</b> " + start + "<br>" +
+                "<b>To:</b> " + end + "<br><br>" +
+                "<b>🚏 Stops:</b> " + start + " → Gandhi Maidan → " + end +
+                "<br><br>" +
+                "<b>⏱ Estimated Time:</b> 25 minutes" +
+                "<br><br>" +
+                "<b>🚌 Transport:</b> City Bus";
+
+            result.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
